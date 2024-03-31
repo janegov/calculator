@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Calculator</title>
+    <style>
+        table{
+            border: 1px solid black;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: auto;
+            margin-top: auto;
+        }
+        input[type="button"]{
+            width: 100%;
+            padding: 20px 40px;
+            background-color: #A2A1E0 ;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+        }
+        input[type="text"]{
+            padding: 20px 30px;
+            font-size: 40px;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            border: 2px solid black;
+        }
+    </style>
+        
+</head>
+
+<body>
+    <table class="calculator">
+        <tr>
+         <!--The first row in calculator-->
+         <td colspan="3"> <input type="text" id="result" disabled/></td>
+         <td><input type="button" value="C" onclick="clr()"/></td>
+        </tr>
+            <!--Second row with 1 2 3 and /-->
+        <tr>
+            <td><input type="button" value="1" onclick="dis('1')" onkeypress="myFunction(event)"></td>
+            <td><input type="button" value="2" onclick="dis('2')" onkeypress="myFunction(event)"></td>
+            <td><input type="button" value="3" onclick="dis('3')" onkeypress="myFunction(event)"></td>
+            <td><input type="button" value="/" onclick="dis('/')" onkeypress="myFunction(event)"></td>  
+        </tr>
+         <!--Third row is 4 5 6 and *-->
+        <tr>
+            <td><input type="button" value="4" onclick="dis('4')" onkeypress="myFunction(event)"></td>
+            <td><input type="button" value="5" onclick="dis('5')" onkeypress="myFunction(event)"></td>
+            <td><input type="button" value="6" onclick="dis('6')" onkeypress="myFunction(event)"></td>
+            <td><input type="button" value="*" onclick="dis('*')"></td>
+        </tr>
+        <!--Fourth row is 7 8 9 - -->
+        <tr>
+            <td><input type="button" value="7" onclick="dis('7')" onkeypress="myFunction(event)"></td>
+            <td><input type="button" value="8" onclick="dis('8')" onkeypress="myFunction(event)"></td>
+            <td><input type="button" value="9" onclick="dis('9')" onkeypress="myFunction(event)"></td>
+            <td><input type="button" value="-" onclick="dis('-')" ></td>
+        </tr>
+        <!--Fifth row is 0 . = + -->
+        <tr>
+            <td><input type="button" value="0" onclick="dis('0')" onkeypress="myFunction(event)"></td>
+            <td><input type="button" value="." onclick="dis('.')"></td>
+            <td><input type="button" value="=" onclick="calculate()"></td>
+            <td><input type="button" value="+" onclick="dis('+')"></td>
+        </tr>
+
+    </table>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/10.7.1/math.min.js"></script>
+    <script>
+        //function that display vlaue
+        function dis(value){
+            document.getElementById("result").value += value
+        }
+
+        function myFunction(event){
+            if(event.key.match(/[0-9/*\-+.]/)){
+                document.getElementById("result").value += event.key
+            }
+        }
+
+        function clr(){
+            document.getElementById("result").value = ""
+        }
+
+        function calculate(){
+            let x = document.getElementById("result").value
+            if(x !== ""){
+                try{
+                    let result = eval(x);
+                    document.getElementById("result").value = result
+                }catch (erorr){
+                    document.getElementById("result").value = "Error"
+                }
+            }
+            
+        }
+    </script>
+    
+</body>
+</html>
